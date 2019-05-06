@@ -3,6 +3,12 @@ CXXFLAGS = -std=c++11 -g -Wall -Wextra -Werror
 bloom: bloom.o BloomFilter.o HashSet.o IntegerHashes.o StringHashes.o
 	${CXX} $(CXXFLAGS) -o $@ $^
 
+test: test.o BloomFilter.o HashSet.o IntegerHashes.o StringHashes.o
+	${CXX} $(CXXFLAGS) -o $@ $^
+
+test.o: test.cpp | BloomFilter.h HashSet.h
+	${CXX} $(CXXFLAGS) -c -o $@ $^
+
 bloom.o: bloom.cpp | BloomFilter.h HashSet.h
 	${CXX} $(CXXFLAGS) -c -o $@ $^
 

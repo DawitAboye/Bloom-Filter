@@ -15,7 +15,6 @@ uint64_t JenkinsHash::hash(const std::string& input) const {
   hash ^= hash >> 11;
   hash += hash << 15;
 
-  cout << "***" << hash << endl;
   return hash;
 }
 

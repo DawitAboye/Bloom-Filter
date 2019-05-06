@@ -61,19 +61,17 @@ void HashSet::insert(const std::string& value){
     }
 
     uint64_t intVal = strfn->hash(value);
-    //cout << intVal << endl;
+    cout << intVal << endl;
     uint64_t hashVal = intfn->hash(intVal);
-    //cout << hashVal << endl;
+    cout << hashVal << endl;
 
-    string* ptr = slots[hashVal];
-    while(ptr != NULL){
+    while(slots[hashVal] != NULL){
         hashVal++;
         hashVal %= nslots;
-        ptr = slots[hashVal];
     }
     //When it leaves this loop our pointer will be NULL
 
-    ptr = new string(value);
+    slots[hashVal] = new string(value);
     nitems++;
 }
 

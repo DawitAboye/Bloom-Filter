@@ -7,7 +7,7 @@ int main(){
     
     HashSet *h = new HashSet();
 
-    h->insert("dawit fasdasdsad  fsadasfasfdasdfasdasadsfa");
+    h->insert("dawit");
     h->insert("blah");
     h->insert("blah");
 
@@ -21,7 +21,8 @@ int main(){
     // }
 
     cout<< h->lookup("dawit") << endl;
-    //cout<< h->lookup("blah3") << endl;
+    cout << h->lookup("blah") << endl;
+    cout<< h->lookup("blah3") << endl;
 
     return 0;
 }
