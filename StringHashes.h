@@ -44,21 +44,21 @@
 
 class StringHash {
 public:
-  //virtual ~StringHash() {}
-  virtual uint64_t hash(const std::string& input) { return 0; }
+  virtual ~StringHash() {}
+  virtual uint64_t hash(const std::string& input) const = 0;
 };
 
 class JenkinsHash: public StringHash {
   // This implements Bob Jenkins' "one at a time" hash function
 public:
-  uint64_t hash(const std::string& input) const;
+  uint64_t hash(const std::string& input) const ;
 };
 
 class PearsonHash: public StringHash {
   // This implements Peter Pearson's eight-bit hash
   // It uses a very simple lookup table: T[i] = 255 - i
 public:
-  uint64_t hash(const std::string& input) const;
+  uint64_t hash(const std::string& input) const; 
 };
 
 #endif

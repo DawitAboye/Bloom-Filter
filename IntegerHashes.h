@@ -19,9 +19,9 @@ protected:
   uint64_t m;
 public:
   IntegerHash(uint64_t i, uint64_t m);
-  //virtual ~IntegerHash() {}
+  virtual ~IntegerHash() {}
 
-  virtual uint64_t hash(uint64_t input) {return 0;}
+  virtual uint64_t hash(uint64_t input) const = 0;
 };
 
 class DivisionHash: public IntegerHash {

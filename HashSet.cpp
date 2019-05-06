@@ -3,16 +3,17 @@
 using namespace std;
 
 
-uint64_t myhash(uint64_t input, int m) {
-  return input * (0 + 1) % m;
-}
+// uint64_t myhash(uint64_t input, int m) {
+//   return input * (0 + 1) % m;
+// }
 
 HashSet::HashSet(){
     nitems = 0;
     nslots = 100;
 
     //intfn = new ReciprocalHash(0, nslots);
-    intfn = NULL;
+    
+    intfn = new DivisionHash(0, nslots);
     strfn = new JenkinsHash();
     strfn2 = new PearsonHash();
 
@@ -28,7 +29,7 @@ HashSet::~HashSet(){
         if(slots[i] != NULL)
             delete slots[i];
     }
-    delete slots;
+    delete [] slots;
     delete intfn;
     delete strfn2;
     delete strfn;
@@ -50,7 +51,7 @@ void HashSet::rehash(){
         if(oldSlots[i] != NULL)
             delete oldSlots[i];
     }
-    delete oldSlots;
+    delete [] oldSlots;
 }
 
 void HashSet::insert(const std::string& value){
@@ -60,8 +61,8 @@ void HashSet::insert(const std::string& value){
     }
 
     uint64_t intVal = strfn->hash(value);
-    cout << intVal << endl;
-    uint64_t hashVal = myhash(intVal,nslots);
+    //cout << intVal << endl;
+    uint64_t hashVal = intfn->hash(intVal);
     //cout << hashVal << endl;
 
     string* ptr = slots[hashVal];
@@ -78,7 +79,7 @@ void HashSet::insert(const std::string& value){
 
 bool HashSet::lookup(const std::string& value) const{
     uint64_t intVal = strfn->hash(value);
-    uint64_t hashVal = myhash(intVal, nslots);
+    uint64_t hashVal = intfn->hash(intVal);
 
     uint64_t startPt = hashVal;
 

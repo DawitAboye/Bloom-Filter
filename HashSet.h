@@ -6,7 +6,6 @@
 #include <string>
 
 class HashSet {
-public:
   int           nitems; // The number of items in the set
   int           nslots; // The number of slots in the table
   IntegerHash*  intfn;  // The integer hash function to use

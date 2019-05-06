@@ -1,4 +1,6 @@
 #include "StringHashes.h"
+#include <iostream>
+using namespace std;
 
 // https://en.wikipedia.org/wiki/Jenkins_hash_function
 uint64_t JenkinsHash::hash(const std::string& input) const {
@@ -12,6 +14,8 @@ uint64_t JenkinsHash::hash(const std::string& input) const {
   hash += hash << 3;
   hash ^= hash >> 11;
   hash += hash << 15;
+
+  cout << "***" << hash << endl;
   return hash;
 }
 
@@ -24,5 +28,6 @@ uint64_t PearsonHash::hash(const std::string& input) const {
     hash = 255 - (hash ^ byte);
   }
 
+  cout << "***" << hash << endl;
   return hash;
 }
